@@ -12,6 +12,7 @@ const gameLetters = document.getElementById("game-letters")
 const gameStatus = document.getElementById("game-status")
 const guessesLeft = document.getElementById("guesses-left")
 const gameHint = document.getElementById("game-hint")
+
 let guessesCount = 0
 let maxGuessCount = 6
 
@@ -56,12 +57,12 @@ alphabetsArray.forEach((wrd, index)=>{
     alphabetButton.innerText = wrd
     alphabetButton.classList.add("blank-space-button")
     alphabetButton.setAttribute("data-letter", wrd)
-    
-
     alphabetButton.addEventListener("click", ()=> checkGuess(alphabetButton))
     gameLetters.appendChild(alphabetButton)
 })
 
+const alphBtn = document.querySelectorAll(".blank-space-button")
+console.log(alphBtn)
 let isCorrectGuess = false
 function checkGuess(button){
     let guessedLetter = button.getAttribute("data-letter")
@@ -83,10 +84,28 @@ function checkGuess(button){
     if(guessesCount === 0){
         gameStatus.innerHTML = `<h3>You have ${maxGuessCount} chances 😊</h3>`
     }else if(guessesCount > 0 && guessesCount < 6){
-       gameStatus.innerHTML = `<h3>You have ${maxGuessCount - guessesCount} chances. You got this 😉 </h3>`
+        gameStatus.innerHTML = `<h3>You have ${maxGuessCount - guessesCount} chances. You got this 😉 </h3>`
     }else if(maxGuessCount-guessesCount === 0){
-       gameStatus.innerHTML = `<h3>You need to restart, it's a lose 😞</h3>`
+        alphBtn.forEach(btn=>{
+            btn.disabled = true
+            btn.style.backgroundColor="#ffcb69"
+        })     
+
+        gameStatus.innerHTML = `<h3>You need to restart, it's a lose 😞</h3>`
+        gameStatus.innerHTML += `<button id="restart-game">Restart Game</button>`
+        document.getElementById("restart-game").addEventListener("click", ()=>{
+            location.reload()
+        })
+    }
+
+    if (blankArray.join("") == wordArray.join("")){
+        gameStatus.innerHTML = `<h3>You won 🎉🎇😍🤩</h3>`
+        gameStatus.innerHTML += `<button id="restart-game">Restart Game</button>`
+        document.getElementById("restart-game").addEventListener("click", ()=>{
+            location.reload()
+        })
     }
 }
 
 })
+
