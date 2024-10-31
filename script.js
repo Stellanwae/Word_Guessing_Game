@@ -73,25 +73,19 @@ function checkGuess(button){
             console.log(blankArray)
             guessedArray[index].innerText = letter
             isCorrectGuess=true
-        }else {
-            isCorrectGuess=false
-        }
-    
+        }    
     })
     
-    if (!isCorrectGuess){
-        guessesCount = maxGuessCount--
-        console.log("count: ",guessesCount)
+    if (!wordArray.includes(guessedLetter)){
+        guessesCount++
     }
     
-    if(guessesCount == 0){
+    if(guessesCount === 0){
         gameStatus.innerHTML = `<h3>You have ${maxGuessCount} chances 😊</h3>`
-    }else if(guessesCount > 0 && guessesCount <= 6){
-       gameStatus.innerHTML = `<h3>You have ${guessesCount} chances. You got this 😉 </h3>`
-    }else if(guessesCount < 0){
+    }else if(guessesCount > 0 && guessesCount < 6){
+       gameStatus.innerHTML = `<h3>You have ${maxGuessCount - guessesCount} chances. You got this 😉 </h3>`
+    }else if(maxGuessCount-guessesCount === 0){
        gameStatus.innerHTML = `<h3>You need to restart, it's a lose 😞</h3>`
-
-
     }
 }
 
