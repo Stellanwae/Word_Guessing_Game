@@ -2,7 +2,6 @@ import { words } from "./words.js"
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
-
 const landingPage = document.getElementById("landing-page")
 const startGame = document.getElementById("start-game")
 const theGame = document.getElementById("the-game")
@@ -41,16 +40,14 @@ blankArray.forEach((blank, index)=>{
     guessButton.setAttribute("data-guessedLetter", index)
     wordGuess.appendChild(guessButton)
 })
-// Hint 
 
+// Hint 
 gameHint.innerHTML = `<p><strong>Hint:</strong> ${wordHint}</p>`
 
 // Alphabets
-
 const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 const alphabetsArray = alphabets.split("")
-
 
 alphabetsArray.forEach((wrd, index)=>{
     let alphabetButton = document.createElement("button")
