@@ -90,8 +90,8 @@ function checkGuess(button){
             btn.disabled = true
             btn.style.backgroundColor="#ffcb69"
         })     
-
-        gameStatus.innerHTML = `<h3>You need to restart, it's a lose 😞</h3>`
+        gameStatus.innerHTML = `<h3>The word was ${word}</h3>`
+        gameStatus.innerHTML += `<h3>You need to restart, it's a lose 😞</h3>`
         gameStatus.innerHTML += `<button id="restart-game">Restart Game</button>`
         document.getElementById("restart-game").addEventListener("click", ()=>{
             location.reload()
